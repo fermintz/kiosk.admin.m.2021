@@ -1,0 +1,45 @@
+.v-application{
+  font-family:'Roboto' , 'SCDream';
+  color:#292929;
+  word-break: keep-all;
+}
+
+
+.v-btn{
+  font-family:'Roboto','SCDream';
+  font-weight:400;
+  letter-spacing: 0;
+  color:#292929;
+}
+
+.v-btn:before{
+  background-color: transparent;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-weight:500;
+}
+
+strong{
+  font-weight:500;
+}
+
+input, textarea{
+  padding:6px;
+  font-size:14px;
+}
+input::placeholder, textarea::placeholder{
+  font-size:12px;
+  color:#999;
+}
+input:focus, textarea:focus{
+  outline-color:#de0059;
+}
+
+.contents{
+  padding:25px 0px;
+}
+
+.v-dialog--active{
+  border-radius:10px;
+}
