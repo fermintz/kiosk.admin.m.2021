@@ -4,36 +4,43 @@
   >
     <div class="sales_summary">
       <div class="top">
-        <h4>2월 요약</h4>
+        <h4><span>2월</span> 요약</h4>
+        <v-btn icon @click="visible = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
       </div>
       
       <div class="cont">
         <dl>
-          <dt>건조기</dt>
+          <dt>장비직접투입</dt>
           <dd>
-            <span>3,675건</span>
-            <strong>12,035,500 원</strong>
+            <span>84건</span>
+            <strong>135,500 원</strong>
           </dd>
         </dl>
         <dl>
-          <dt>기타장비</dt>
+          <dt>키오스크(현금)</dt>
           <dd>
-            <span>1,261건</span>
-            <strong>2,305,500 원</strong>
+            <span>161건</span>
+            <strong>305,500 원</strong>
           </dd>
         </dl>
         <dl>
-          <dt>세탁기</dt>
+          <dt>키오스크(카드)</dt>
           <dd>
-            <span>2,503건</span>
-            <strong>12,343,000 원</strong>
+            <span>303건</span>
+            <strong>643,000 원</strong>
           </dd>
         </dl>
+          
+      </div>
+
+      <div class="bottom">
         <dl class="month_total">
           <dt>합계</dt>
           <dd>
-            <span>7,439건</span>
-            <strong>26,684,000 원</strong>
+            <span>548건</span>
+            <strong>1,084,000 원</strong>
           </dd>
         </dl>
       </div>
@@ -46,7 +53,7 @@
 export default {
   data(){
     return{
-      visible:true
+      visible:false
     }
   },
   methods:{
@@ -60,72 +67,91 @@ export default {
 <style lang="scss" scoped>
 .sales_summary{
   background:#fff;
-  
+ 
   .top{
     display:flex;
     align-items: center;
-    justify-content: center;
-    padding:20px 20px;
+    justify-content: space-between;
+    height:56px;
+    padding:0 15px;
+    border-bottom:1px solid #d2d2d2;
 
     h4{
       display:flex;
       justify-content: center;
       align-items: center;
-      font-size:12px;
+      font-size:18px;
       font-weight:500;
-      height:26px;
-      border-radius:13px;
-      background:#292929;
-      color:#fff;
-      padding:0 20px;
+      span{
+        color:#de0059;
+      }
     }
   }
   .cont{
+    padding:15px 20px;
     dl{
       display:flex;
       justify-content: space-between;
       align-items: center;
-      padding:0 20px;
-      height:60px;
+      margin-bottom:10px;
+      padding-bottom:10px;
       border-bottom:1px solid #e2e2e2;
-
+      
       dt{
+        display:flex;
+        align-items: center;
+        justify-content: center;
         font-size:14px;
+        font-weight:500;
       }
       dd{
         text-align:right;
         span{
-          font-size:11px;
+          font-size:12px;
           color:#898989;
           display:block;
         }
         strong{
           display:block;
-          font-size:12px;
-          font-weight:500;
-        }
-      }
-    }
-    dl.month_total{
-      background:#F9F2F5;
-      dt{
-        font-weight:500;
-      }
-      dd{
-        span{
-          color:#292929;
-        }
-        strong{
-          color:#de0059;
           font-size:14px;
+          font-weight:500;
         }
       }
     }
 
     dl:last-child{
+      margin-bottom:0;
+      padding-bottom:0;
       border-bottom:0px;
     }
+
   }
-  .bottom{}
+  .bottom{
+    background:#F9F2F5;
+    padding:15px 20px;
+    dl.month_total{
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+
+      dt{
+        font-weight:500;
+      }
+      dd{
+        text-align:right;
+        span{
+          font-size:12px;
+          color:#898989;
+          display:block;
+        }
+        strong{
+          color:#de0059;
+          display:block;
+          font-size:16px;
+          font-weight:500;
+        }
+      }
+    }
+  }
 }
 </style>

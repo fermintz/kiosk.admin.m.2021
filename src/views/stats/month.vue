@@ -29,33 +29,34 @@
     </div>
 
     <div class="chart_wrap">
-      차트자리
+      <!-- <ChartBar type="Bar" :datas="datas" :options="options"/> -->
+      <div class="chart_box">
+        <canvas id="BarChart"/>
+      </div>
     </div>
 
     <div class="inner">
-    
-        <div class="year_total">
-          <span>2021년 총 매출</span>
-          <strong>45,495,000 원</strong>
-        </div>
-
-        <div class="month_total_table">
-          <v-row>
-            <v-col cols="4" v-for="item in 10" :key="item">
-              <div class="item" v-ripple @click="$refs.salesSummary.handle(true)">
-                <span>{{item}}월</span>
-                <strong>178,000 원</strong>
-                <v-icon>mdi-plus-circle</v-icon>
-              </div>
-            </v-col>
-          </v-row>
-        </div>
-
-        <div class="month_summary">
-          
-        </div>
+      <div class="year_total">
+        <span>2021년 총 매출</span>
+        <strong>45,495,000 원</strong>
       </div>
 
+      <div class="month_total_table">
+        <v-row>
+          <v-col cols="4" v-for="item in 10" :key="item">
+            <div class="item" v-ripple @click="$refs.salesSummary.handle(true)">
+              <span>{{item}}월</span>
+              <strong>178,000 원</strong>
+              <v-icon>mdi-plus-circle</v-icon>
+            </div>
+          </v-col>
+        </v-row>
+      </div>
+
+      <div class="month_summary">
+        
+      </div>
+    </div>
 
     <SalesSummary ref="salesSummary"/>
   </div>
@@ -64,9 +65,67 @@
 <script>
 import DateSelect from '@/components/date_select';
 import SalesSummary from '@/components/modal/sales_summary'
+import { Chart } from 'chart.js';
+// import ChartBar from '@/components/chartBar'
 
 export default {
   components:{DateSelect, SalesSummary},
+  data(){
+    return{
+      datas:null,
+    }
+  },
+  mounted(){
+    this.makeChart();
+  },
+  methods:{
+    makeChart(){
+      const ctx = document.getElementById('BarChart').getContext('2d');
+      
+      const BarChart = new Chart(ctx, {
+        type:'bar',
+        data:{
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 3
+          }]
+        },
+
+        options: {
+          responsive: true,
+          lineTension: 1,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                padding: 25,
+              }
+            }]
+          }
+        }
+      })
+
+      BarChart()
+    },   
+  },
 }
 </script>
 
@@ -125,11 +184,14 @@ export default {
 }
 
 .chart_wrap{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  height:300px;
+  width:100%;
   background:#f8f8f8;
+  overflow-y:scroll;
+
+  .chart_box{
+    width:900px;
+    height:400px;
+  }
 }
 
 .year_total{

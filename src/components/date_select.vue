@@ -8,7 +8,6 @@
       ref="dialog"
       v-model="modal"
       :return-value.sync="date"
-      lang="ko"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
